@@ -1,0 +1,8 @@
+<div class="container">
+  <mat-spinner *ngIf="inProgress" class="spinner" diameter="50"></mat-spinner>
+  <mat-nav-list role="list">
+    <mat-list-item *ngFor="let operator of operators" [routerLink]="['refill', operator]">
+      {{operator}}
+    </mat-list-item>
+  </mat-nav-list>
+</div>

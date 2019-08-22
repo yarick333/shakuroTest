@@ -1,0 +1,53 @@
+<div class="container">
+  <p class="title">Operator: {{operator}}</p>
+  <form class="form" [formGroup]="refillForm" (ngSubmit)="onSubmit(refillForm.value)">
+    <mat-form-field class="field">
+      <input matInput
+             type="text"
+             placeholder="Phone"
+             prefix="+7 "
+             mask="(000) 000-00-00"
+             showMaskTyped="true"
+             formControlName="phone">
+      <mat-error *ngIf="refillForm.controls.phone.invalid &&
+                       (refillForm.controls.phone.dirty || refillForm.controls.phone.touched)">
+        <div *ngIf="refillForm.controls.phone.errors.required">
+          Phone is required.
+        </div>
+        <div *ngIf="refillForm.controls.phone.errors['Mask error']">
+          Phone is invalid.
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input matInput
+             placeholder="Amount"
+             type="text"
+             mask="comma_separator.2"
+             [prefix]="'\u20bd '"
+             formControlName="amount">
+      <mat-error *ngIf="refillForm.controls.amount.invalid &&
+                       (refillForm.controls.amount.dirty || refillForm.controls.amount.touched)">
+        <div *ngIf="refillForm.controls.amount.errors.required">
+          Amount is required.
+        </div>
+        <div *ngIf="refillForm.controls.amount.errors['Mask error']">
+          Amount is invalid.
+        </div>
+        <div *ngIf="refillForm.controls.amount.errors.min">
+          Minimum funds available for refill: 1.00
+        </div>
+        <div *ngIf="refillForm.controls.amount.errors.max">
+          Maximum funds available for refill: 1000.00
+        </div>
+      </mat-error>
+    </mat-form-field>
+    <button class="custom-button"
+            [disabled]="refillForm.invalid || inProgress"
+            mat-raised-button
+            color="primary"
+            type="submit">
+      Refill
+    </button>
+  </form>
+</div>

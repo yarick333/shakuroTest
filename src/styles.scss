@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.snack-bar {
+  background-color: white;
+  color: black;
+
+  &.success {
+    color: green;
+  }
+
+  &.error {
+    color: red;
+  }
+
+  .mat-button {
+    color: gray;
+  }
+}
